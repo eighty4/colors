@@ -3,8 +3,12 @@ name: color_scrape CI
 on:
   push:
     branches: [ main ]
+    paths:
+      - "scrape/**/*"
   pull_request:
     branches: [ main ]
+    paths:
+      - "scrape/**/*"
 
 jobs:
   test:
