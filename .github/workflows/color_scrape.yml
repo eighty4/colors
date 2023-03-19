@@ -1,0 +1,27 @@
+name: color_scrape CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+      - name: release build
+        run: cargo build --release --all-features
+        working-directory: scrape
+      - name: test
+        run: cargo test
+        working-directory: scrape
+      - name: lint
+        run: cargo clippy -- -D warnings
+        working-directory: scrape
+      - name: format check
+        run: cargo fmt -v
+        working-directory: scrape
+      - run: git diff --exit-code
