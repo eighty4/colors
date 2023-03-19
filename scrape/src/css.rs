@@ -9,7 +9,8 @@ mod keyword;
 
 lazy_static! {
     static ref COLOR_KEYWORDS: HashMap<&'static str, &'static str> = keyword::colors();
-    static ref HEX_REGEX: Regex = Regex::new(r"#[\da-fA-F]{3}(?:[\da-fA-F]{3,5})?").unwrap();
+    static ref HEX_REGEX: Regex =
+        Regex::new(r"#[\da-fA-F]{3}(?:[\da-fA-F]{3,5}|[\da-fA-F])?").unwrap();
     static ref KEYWORD_REGEX: Regex = Regex::new(
         COLOR_KEYWORDS
             .keys()
@@ -97,9 +98,10 @@ mod tests {
 .selector {
     background: #000;
     border-color: #000000ee;
+    caret-color: #f0ff;
     color: #ffffff;
 }";
-        assert_eq!(extract_colors(css).len(), 3);
+        assert_eq!(extract_colors(css).len(), 4);
     }
 
     #[test]
