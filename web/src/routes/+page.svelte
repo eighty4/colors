@@ -52,7 +52,8 @@
         --background-main: #0b0b0b;
         --border-size: .05rem;
         --border-color: #333;
-        --border-highlight-color: #444;
+        --border-medium-highlight-color: #444;
+        --border-lite-highlight-color: #222;
         --border-hover-color: #aaa;
     }
 
@@ -109,7 +110,7 @@
     }
 
     header:hover #app-title #app-link {
-        border: var(--border-size) solid var(--border-highlight-color);
+        border: var(--border-size) solid var(--border-lite-highlight-color);
     }
 
     header #app-title #app-link:hover {
@@ -178,7 +179,7 @@
     }
 
     aside:hover #create-palette-link {
-        border: var(--border-size) solid var(--border-highlight-color);
+        border: var(--border-size) solid var(--border-medium-highlight-color);
     }
 
     aside:hover #create-palette-link:hover {
