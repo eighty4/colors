@@ -1,4 +1,5 @@
 <script>
+    import ScrapeUrlForm from '$lib/url-form.svelte'
     import Palette from '$lib/palette/palette.svelte'
 
     let palettes = null
@@ -33,6 +34,9 @@
     </button>
 </aside>
 <main>
+    <div class="content-spacing">
+        <ScrapeUrlForm/>
+    </div>
     {#if palettes === null}
         <p>Loading</p>
     {:else}
@@ -46,6 +50,7 @@
     :root {
         --header-height: 3.5rem;
         --aside-width: 4.5rem;
+        --half-aside-width: calc(var(--aside-width) * .5);
         --text-primary-color: #fff;
         --background-header: #000;
         --background-aside: #060606;
@@ -70,7 +75,7 @@
         justify-content: start;
         align-items: center;
         padding-left: calc(1.5 * var(--aside-width));
-        padding-right: calc(.5 * var(--aside-width));
+        padding-right: var(--half-aside-width);
     }
 
     header #app-title {
@@ -128,7 +133,7 @@
     main {
         background: var(--background-main);
         color: var(--text-primary-color);
-        padding: calc(.5 * var(--aside-width));
+        padding: var(--half-aside-width);
         position: fixed;
         left: var(--aside-width);
         right: 0;
@@ -138,6 +143,10 @@
         display: flex;
         flex-direction: column;
         justify-content: start;
+    }
+
+    .content-spacing {
+        margin-bottom: var(--half-aside-width);
     }
 
     aside {
@@ -156,7 +165,7 @@
 
     aside #create-palette-link {
         background-color: transparent;
-        margin-top: calc(.5 * var(--aside-width));
+        margin-top: var(--half-aside-width);
         align-self: baseline;
         user-select: none;
         cursor: pointer;
