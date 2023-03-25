@@ -1,9 +1,10 @@
 <script>
     import Swatch from './swatch.svelte'
+    export let name
 </script>
 
 <div class="palette-container">
-    <div class="palette-name">Swatch!</div>
+    <div>{name}</div>
     <ol class="swatch-grid">
         <li class="swatch">
             <Swatch/>
@@ -21,11 +22,6 @@
 
     .palette-container {
         margin-bottom: var(--palette-padding);
-    }
-
-    .palette-name {
-        font-family: Figtree, sans-serif;
-        font-weight: 100;
     }
 
     .swatch-grid {

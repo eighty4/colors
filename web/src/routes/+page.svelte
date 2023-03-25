@@ -1,5 +1,19 @@
 <script>
     import Palette from '$lib/palette/palette.svelte'
+
+    let palettes = null
+
+    new Promise((res) => {
+        setTimeout(() => {
+            res([
+                'Palette 1', 'Palette 2', 'Palette 3'
+            ])
+        }, 500)
+    }).then((p) => palettes = p)
+
+    function addPalette() {
+        palettes = [...palettes, `Swatch ${palettes.length + 1}`]
+    }
 </script>
 
 <header>
@@ -14,21 +28,25 @@
     </a>
 </header>
 <aside>
-    <span id="create-palette-link">
-        <span>Add</span> <span>Palette</span>
-    </span>
+    <button id="create-palette-link" on:click={addPalette}>
+        <span>Add Palette</span>
+    </button>
 </aside>
 <main>
-    <Palette/>
-    <Palette/>
-    <Palette/>
+    {#if palettes === null}
+        <p>Loading</p>
+    {:else}
+        {#each palettes as palette}
+            <Palette name={palette}/>
+        {/each}
+    {/if}
 </main>
 
 <style>
     :root {
         --header-height: 3.5rem;
         --aside-width: 4.5rem;
-        --text-primary: #fff;
+        --text-primary-color: #fff;
         --background-header: #000;
         --background-aside: #060606;
         --background-main: #0b0b0b;
@@ -58,14 +76,14 @@
         font-size: 1.5rem;
         letter-spacing: .075rem;
         font-family: Quicksand, sans-serif;
-        color: var(--text-primary);
+        color: var(--text-primary-color);
         user-select: none;
     }
 
     header #app-title #eighty4-link {
         text-decoration: none;
         text-underline-offset: .175rem;
-        color: var(--text-primary);
+        color: var(--text-primary-color);
     }
 
     header #app-title #eighty4-link:hover {
@@ -108,7 +126,7 @@
 
     main {
         background: var(--background-main);
-        color: var(--text-primary);
+        color: var(--text-primary-color);
         padding: calc(.5 * var(--aside-width));
         position: fixed;
         left: var(--aside-width);
@@ -116,6 +134,9 @@
         bottom: 0;
         top: var(--header-height);
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
     }
 
     aside {
@@ -133,9 +154,19 @@
     }
 
     aside #create-palette-link {
+        background-color: transparent;
         margin-top: calc(.5 * var(--aside-width));
         align-self: baseline;
-        color: var(--text-primary);
+        user-select: none;
+        cursor: pointer;
+        border: var(--border-size) solid transparent;
+        border-radius: .1rem;
+        padding-bottom: .6rem;
+        transition: border 300ms linear;
+    }
+
+    aside #create-palette-link span {
+        color: var(--text-primary-color);
         font-family: BarlowThin, sans-serif;
         writing-mode: vertical-lr;
         text-orientation: upright;
@@ -144,12 +175,6 @@
         font-size: 1.9rem;
         font-weight: bold;
         word-spacing: -.66rem;
-        user-select: none;
-        cursor: pointer;
-        border: var(--border-size) solid transparent;
-        border-radius: .1rem;
-        padding-bottom: .6rem;
-        transition: border 300ms linear;
     }
 
     aside:hover #create-palette-link {
