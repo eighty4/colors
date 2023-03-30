@@ -44,8 +44,7 @@ impl From<Srgb> for Color {
     }
 }
 
-#[allow(dead_code)]
-pub(crate) fn extract_colors(css: &'static str) -> HashSet<Color> {
+pub(crate) fn extract_colors(css: &str) -> HashSet<Color> {
     let mut colors = HashSet::new();
     for srgb_match in SRGB_REGEX.find_iter(css) {
         if let Ok(srgb) = srgb_match.as_str().parse::<Srgb>() {
