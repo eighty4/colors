@@ -1,0 +1,5 @@
+div {
+    background: hsl(0, 25%, 5%);
+    border-color: hsl(0, 50%, 50%);
+    color: hsl(120, 50%, 30%);
+}
