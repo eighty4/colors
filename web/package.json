@@ -1,8 +1,9 @@
 {
 	"name": "@eighty4/colors",
 	"version": "0.0.1",
+	"type": "module",
 	"private": true,
-	"packageManager": "pnpm@7.29.3",
+	"packageManager": "pnpm@8.6.12",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -15,22 +16,21 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.28.1",
-		"@sveltejs/adapter-static": "^2.0.1",
-		"@sveltejs/kit": "^1.5.0",
-		"@typescript-eslint/eslint-plugin": "^5.45.0",
-		"@typescript-eslint/parser": "^5.45.0",
-		"eslint": "^8.28.0",
-		"eslint-config-prettier": "^8.5.0",
+		"@playwright/test": "^1.37.1",
+		"@sveltejs/adapter-static": "^2.0.3",
+		"@sveltejs/kit": "^1.22.6",
+		"@typescript-eslint/eslint-plugin": "^5.62.0",
+		"@typescript-eslint/parser": "^5.62.0",
+		"eslint": "^8.47.0",
+		"eslint-config-prettier": "^8.10.0",
 		"eslint-plugin-svelte3": "^4.0.0",
-		"prettier": "^2.8.0",
-		"prettier-plugin-svelte": "^2.8.1",
-		"svelte": "^3.54.0",
-		"svelte-check": "^3.0.1",
-		"tslib": "^2.4.1",
-		"typescript": "^4.9.3",
-		"vite": "^4.0.0",
-		"vitest": "^0.25.3"
-	},
-	"type": "module"
+		"prettier": "^2.8.8",
+		"prettier-plugin-svelte": "^2.10.1",
+		"svelte": "^3.59.2",
+		"svelte-check": "^3.5.0",
+		"tslib": "^2.6.2",
+		"typescript": "^4.9.5",
+		"vite": "^4.4.9",
+		"vitest": "^0.25.8"
+	}
 }
