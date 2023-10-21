@@ -1,61 +1,35 @@
 <script lang="ts">
-    import Swatch from './swatch.svelte'
+    import type {PaletteRecord} from '$lib/data'
 
-    export let name
-    let fileDragElement = 0
+    export let palette: PaletteRecord
 
-    function onDropFile(e: DragEvent) {
-        e.preventDefault()
-        fileDragElement = 0
-        console.log(e.dataTransfer.files.length, e.dataTransfer.files.length === 1 ? 'file' : 'files')
+    let rows: Array<string>
+
+    $: {
+        rows = palette.colors
     }
 </script>
 
-<div class="container" class:dragging-file={!!fileDragElement}
-     on:drop={onDropFile}
-     on:dragover={(e) => e.preventDefault()}
-     on:dragenter={() => fileDragElement++}
-     on:dragleave={() => fileDragElement--}>
-    <div class="name">{name}</div>
-    <ol class="swatch-grid">
-        <li class="swatch">
-            <Swatch/>
-        </li>
-        <li>
-            <Swatch/>
-        </li>
-    </ol>
+<div class="row">
+    {#each palette.colors as color}
+        <div class="swatch" style:background={color}>
+
+        </div>
+    {/each}
 </div>
 
 <style>
-    :root {
-        --swatch-padding: 1rem;
-    }
-
-    .container {
-        padding: 2rem;
-        border: 1px solid transparent;
-    }
-
-    .name {
-        margin-bottom: 1.25rem;
-    }
-
-    .container.dragging-file {
-        background: hsl(120, 50%, 6%);
-        border-color: hsl(120, 75%, 20%);
-    }
-
-    .swatch-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(calc(var(--swatch-size) * 1.1), 1fr));
-        gap: var(--swatch-padding);
-        list-style-type: none;
+    .row {
+        display: flex;
+        flex-direction: row;
+        gap: .5rem;
+        justify-content: center;
+        align-items: center;
     }
 
     .swatch {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        height: 3rem;
+        width: 5rem;
+        border-radius: .1rem;
     }
 </style>
